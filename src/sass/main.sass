@@ -1,0 +1,218 @@
+$blue-color: #005BFE
+$red-color: #F81155
+
+*
+	box-sizing: border-box
+
+body
+	font-family: 'Arial', sans-serif
+	margin: 0
+	padding: 0
+	position: relative
+
+a.button.button_outlined
+	border: 1px solid $blue-color
+	color: $blue-color
+	background: transparent
+
+a.button.button_blue
+	background: $blue-color
+	color: #FFFFFF
+
+a.button.button_red
+	background: $red-color
+	color: #FFFFFF
+
+a.button
+	border-radius: 6px
+	padding: 10px 14px
+	display: flex
+	align-items: center
+	justify-content: center
+	text-decoration: none
+	font-size: 14px
+	font-weight: 700
+	line-height: 18px
+
+//Modal styling
+
+.overlay
+	position: absolute
+	left: 0
+	top: 0	
+	width: 100%
+	height: 100%
+	background: rgba(0, 0, 0, 0.3)
+	z-index: 2
+	transition: .2s all
+	transform: translateX(-100vw)
+
+.modal_open
+	transform: translateX(0)
+
+.modal
+	width: 312px
+	height: 100%
+	background: #ffffff
+	transition: .2s all
+	.modal-content
+		height: 100%
+	.modal-content__top
+		width: 100%
+		padding: 24px
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+		.modal-top__header
+			font-size: 18px
+			font-weight: 700px
+			line-height: 24px
+			color: #000000
+			margin: 0
+			display: flex
+			justify-content: space-between
+	.modal-content__main
+		padding: 24px
+		height: calc(100% - 73px)
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		.modal-list
+			margin: 0
+			padding: 0
+			list-style: none
+			.modal-list__item
+				width: 100%
+				height: 38px
+				display: flex
+				justify-content: space-between
+				margin-bottom: 16px
+				.modal-item__text
+					display: flex
+					padding: 11px 12px
+					background: #F2F2F2	
+					border-radius: 6px
+					margin: 0
+					font-size: 14px
+					line-height: 16px
+					width: 214px
+				.modal-item__button
+					width: 38px
+					height: 38px
+					display: flex
+					justify-content: center
+					align-items: center
+					border-radius: 6px
+					border: 1px solid #F2F2F2		
+		.modal-buttons
+			display: flex
+			align-self: flex-end
+			justify-content: space-between
+			width: 212px
+		.modal-form.modal-form_visible
+			height: auto	
+		.modal-form	
+			width: 100%
+			height: 0
+			overflow: hidden
+			display: flex
+			justify-content: space-between
+		.modal-form__input
+			border: none
+			display: flex
+			padding: 11px 12px
+			background: #F2F2F2	
+			border-radius: 6px
+			margin: 0
+			font-size: 14px
+			line-height: 16px
+			width: 214px				
+
+
+//Header styling
+
+.top-header
+	width: 100%
+	height: 70px
+	padding: 0 380px
+	display: flex
+	align-items: center
+	.top-header__wrapper
+		width: 100%
+		display: flex
+		align-items: center
+		justify-content: space-between
+		.top-logo
+			display: flex
+			align-items: center
+		.top-logo__text
+			color: $blue-color
+			font-size: 18px
+			font-weight: 700
+			margin-left: 16px
+		.top-wrapper__buttons
+			display: flex	
+
+.main
+	width: 100%
+	height: 890px
+	background: #F6F7F9
+			
+.main-list.contacts
+	width: 1140px
+	border-radius: 6px
+	list-style: none
+	margin: 54px auto 54px auto
+	padding: 0
+	.contacts-item
+		margin-bottom: 24px
+	.contacts-header__wrapper
+		padding: 24px
+		font-size: 18px
+		line-height: 22px
+		font-weight: 700
+		display: flex
+		justify-content: space-between
+		background: #FFFFFF	
+	.contacts-header__icon
+		height: 22px		
+	.contacts-header
+		box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05)
+	.contacts-header.contacts-header_active
+		color: $blue-color
+
+.nested-list.nested-list_open
+	max-height: 300px
+
+.nested-list
+	margin: 0
+	padding: 0
+	max-height: 0
+	transition: .2s all
+	overflow: hidden
+	list-style: none
+	.nested-list__item
+		display: flex
+		align-items: center
+		font-weight: 400
+		font-size: 18px
+		line-height: 120%
+		padding: 24px
+		border-top: 1px solid #F2F2F2	
+		.nested-item__text
+			display: flex
+			align-items: center
+			justify-content: space-between
+			width: calc(100% - 84px)	
+			padding-right: 24px
+		.nested-item__name
+			color: #000000
+			opacity: .5
+		.nested-item__phone
+			color: #000000	
+		.nested-item__icons
+			width: 84px
+			display: flex
+			justify-content: space-between
+		.nested-icons__item
+			width: 38px
+			height: 38px
+			border: 1px solid #F2F2F2	
