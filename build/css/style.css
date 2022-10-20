@@ -9,9 +9,11 @@ body {
   position: relative; }
 
 a.button.button_outlined {
-  border: 1px solid #005BFE;
+  border: 1px solid transparent;
   color: #005BFE;
   background: transparent; }
+  a.button.button_outlined:hover {
+    border: 1px solid #005BFE; }
 
 a.button.button_blue {
   background: #005BFE;
@@ -20,6 +22,8 @@ a.button.button_blue {
 a.button.button_red {
   background: #F81155;
   color: #FFFFFF; }
+  a.button.button_red span {
+    padding-left: 8px; }
 
 a.button {
   border-radius: 6px;
@@ -36,7 +40,13 @@ a.button {
   text-decoration: none;
   font-size: 14px;
   font-weight: 700;
-  line-height: 18px; }
+  line-height: 18px;
+  -webkit-transition: .1s all;
+  -o-transition: .1s all;
+  transition: .1s all; }
+  a.button:hover {
+    -webkit-filter: brightness(1.1);
+    filter: brightness(1.1); }
 
 .overlay {
   position: absolute;
@@ -49,7 +59,13 @@ a.button {
   -webkit-transition: .2s all;
   -o-transition: .2s all;
   transition: .2s all;
-  visibility: hidden; }
+  visibility: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+  .overlay .overlay-outside {
+    height: 100%;
+    width: calc(100% - 312px); }
 
 .modal_open {
   visibility: visible; }
@@ -227,7 +243,11 @@ a.button {
     .top-header .top-header__wrapper .top-wrapper__buttons {
       display: -webkit-box;
       display: -ms-flexbox;
-      display: flex; }
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+      width: 276px; }
 
 .main {
   width: 100%;
@@ -341,9 +361,9 @@ a.button {
       -o-transition: .2s all;
       transition: .2s all; }
     .nested-list .nested-list__item .nested-icons__item:hover svg {
-      fill: #ffffff; }
+      fill: #000000; }
       .nested-list .nested-list__item .nested-icons__item:hover svg g path {
-        fill: #ffffff; }
+        fill: #000000; }
     .nested-list .nested-list__item .nested-icon_blue:hover {
       color: #fff;
       background: #005BFE;

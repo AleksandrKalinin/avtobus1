@@ -11,9 +11,11 @@ body
 	position: relative
 
 a.button.button_outlined
-	border: 1px solid $blue-color
+	border: 1px solid transparent
 	color: $blue-color
 	background: transparent
+	&:hover
+		border: 1px solid $blue-color
 
 a.button.button_blue
 	background: $blue-color
@@ -22,6 +24,8 @@ a.button.button_blue
 a.button.button_red
 	background: $red-color
 	color: #FFFFFF
+	span
+		padding-left: 8px	
 
 a.button
 	border-radius: 6px
@@ -33,6 +37,9 @@ a.button
 	font-size: 14px
 	font-weight: 700
 	line-height: 18px
+	transition: .1s all
+	&:hover
+		filter: brightness(1.1)
 
 //Modal styling
 
@@ -46,6 +53,10 @@ a.button
 	z-index: 2
 	transition: .2s all
 	visibility: hidden
+	display: flex
+	.overlay-outside
+		height: 100%
+		width: calc(100% - 312px)
 
 .modal_open
 	visibility: visible
@@ -166,6 +177,8 @@ a.button
 			margin-left: 16px
 		.top-wrapper__buttons
 			display: flex	
+			justify-content: space-between
+			width: 276px
 
 .main
 	width: 100%
@@ -245,10 +258,10 @@ a.button
 			transition: .2s all
 		.nested-icons__item:hover	
 			svg
-				fill: #ffffff
+				fill: #000000
 				g
 					path
-						fill: #ffffff		
+						fill: #000000	
 		.nested-icon_blue:hover
 			color: #fff
 			background: $blue-color
