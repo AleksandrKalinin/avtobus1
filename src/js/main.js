@@ -42,12 +42,12 @@ reset.addEventListener("click", function(e) {
       {
         name: "Фамилия Имя Отчество",
         phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
-         id: "id6a3eddbbe6f98"
+         id: "id2a3eddbbe6f98"
       },
       {
         name: "Фамилия Имя Отчество",
         phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
-        id: "id6a5effcce6798"        
+        id: "id4a5effcce6798"        
       }
     ],
     "Пустой": []    
@@ -173,7 +173,6 @@ function renderList() {
     for (var j = 0; j < values.length; j++) {
       let nestedItem = document.createElement("li");
       nestedItem.classList.add("nested-list__item", "nested-item");
-      nestedItem.setAttribute("data-value", values[j].id);
       let nestedTxt = document.createElement("p");
       nestedTxt.classList.add("nested-item__text");
       let nestedName = document.createElement("span");
@@ -185,8 +184,18 @@ function renderList() {
       let iconEdit = document.createElement("span"); 
       let iconDelete = document.createElement("span"); 
       iconEdit.classList.add("nested-icons__item","nested-icon", "nested-icon_blue");
-      iconEdit.addEventListener("click", function() {
-        let id = values[j].id;
+      iconEdit.setAttribute("data-value", values[j].id);
+      iconEdit.addEventListener("click", function(e) {
+        let id = e.target.dataValue;
+        console.log(values);
+        let index = values.map(item => item.id).indexOf(id);
+        /*
+        for (let x = 0; x < values.length; x++) {
+          if (listToDelete.indexOf(obj.id) !== -1) {
+              arrayOfObjects.splice(i, 1);
+          }
+        } */
+        console.log(index);
         console.log(id);
       })
       iconDelete.classList.add("nested-icons__item","nested-icon", "nested-icon_red");
