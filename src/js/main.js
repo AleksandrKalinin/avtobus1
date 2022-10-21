@@ -1,23 +1,40 @@
-var groups = document.getElementById("#groups");
-var submitContact = document.getElementById("#submitContact");
-var addContact = document.getElementById("#addContact");
-var modalGroups = document.getElementById("#modalGroups");
-var modalContacts = document.getElementById("#modalContacts");
-var modalClose = document.getElementById("#modalClose");
-var toggleContacts = document.getElementById("#toggleContacts");
+let groups = document.getElementById("#groups");
+let submitContact = document.getElementById("#submitContact");
+let addContact = document.getElementById("#addContact");
+let modalGroups = document.getElementById("#modalGroups");
+let modalContacts = document.getElementById("#modalContacts");
+let toggleContacts = document.getElementById("#toggleContacts");
 let toggleButtons = document.getElementsByClassName("contacts-header__icon");
+let addGroup = document.getElementById("#addGroup");
+let submitGroup = document.getElementById("#submitGroup");
+let submitContact = document.getElementById("#submitContact");
+let inputGroup = document.getElementById("#inputGroup");
+let modalGroups = document.getElementById("#modalGroups");
+let modalContacts = document.getElementById("#modalContacts");
+let modalForm = document.getElementById("#modalForm"); 
 let currentItem = {};
 let updating = false;
 
+//Скрипты срабатывающие при загрузке страницы
 window.onload = function() {
-  renderList();
-  renderGroups();
-  renderOptions();
+  let selectGroup = document.getElementById("#selectGroup");
+  let storage = window.localStorage.getItem("contacts");
+  let contacts = JSON.parse(storage);
+  if (contacts !== null && Object.keys(contacts).length !== 0) {
+    renderList();
+    renderGroups();
+    renderOptions();
+  } else {
+    renderPlaceholder();
+  }  
+  onInitialLoad();
 }
 
-const modals = document.getElementsByClassName("overlay-outside");
 
-for (var i = 0; i < modals.length; i++) {
+//Модальные окна
+let modals = document.getElementsByClassName("overlay-outside");
+
+for (let i = 0; i < modals.length; i++) {
   modals[i].addEventListener("click", function(e) {
     modalGroups.classList.remove("modal_open");
     modalContacts.classList.remove("modal_open");
@@ -29,77 +46,32 @@ groups.addEventListener("click", function(e) {
   modalGroups.classList.toggle("modal_open");
 })
 
-modalClose.addEventListener("click", function(e) {
-  e.preventDefault();
-  modalGroups.classList.toggle("modal_open");
-})
+let closeButtons = document.getElementsByClassName("modal-header__icon");
+for (let i = 0; i < closeButtons.length; i++) {
+  closeButtons[i].addEventListener("click", function(e) {
+    e.preventDefault();
+    modalGroups.classList.remove("modal_open");
+    modalContacts.classList.remove("modal_open");
+  })
+}
 
 addContact.addEventListener("click", function(e) {
   e.preventDefault();
   modalContacts.classList.toggle("modal_open");
 })
 
-let reset = document.getElementById("#reset");
-
-reset.addEventListener("click", function(e) {
-  e.preventDefault();
-  window.localStorage.clear();
-  var contactsList = {
-    "Друзья": [
-      {
-        name: "Фамилия Имя Отчество",
-        phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
-        id: "id3f4efeaae6f99"
-      },
-      {
-        name: "Фамилия Имя Отчество",
-        phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
-         id: "id5f4efebbe6f99"        
-      }
-    ],
-    "Коллеги": [
-      {
-        name: "Фамилия Имя Отчество",
-        phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
-         id: "id2a3eddbbe6f98"
-      },
-      {
-        name: "Фамилия Имя Отчество",
-        phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
-        id: "id4a5effcce6798"        
-      }
-    ],
-    "Пустой": []    
-  }
-  window.localStorage.setItem("contacts", JSON.stringify(contactsList))
-})
-
-
-for (var i = 0; i < toggleButtons.length; i++) {
-  toggleButtons[i].addEventListener("click", function(e) {
-    
-  })
-}
-
-var addGroup = document.getElementById("#addGroup");
-var submitGroup = document.getElementById("#submitGroup");
-var submitContact = document.getElementById("#submitContact");
-var inputGroup = document.getElementById("#inputGroup");
-var modalGroups = document.getElementById("#modalGroups");
-var modalContacts = document.getElementById("#modalContacts");
-var modalForm = document.getElementById("#modalForm"); 
-
 addGroup.addEventListener("click", function(e) {
   e.preventDefault();
   modalForm.classList.add("modal-form_visible");
 })
 
+//Добавление группы
 submitGroup.addEventListener("click", function(e) {
   e.preventDefault();
   let name = inputGroup.value;
-  var storage = window.localStorage.getItem("contacts");
-  var contacts = JSON.parse(storage);
-  var keys = Object.keys(contacts);
+  let storage = window.localStorage.getItem("contacts");
+  let contacts = JSON.parse(storage);
+  let keys = Object.keys(contacts);
   if (keys.includes(name)) {
     alert("Key already exists!");
   } else if(name === "") {
@@ -113,16 +85,17 @@ submitGroup.addEventListener("click", function(e) {
   location.reload(); 
 })
 
+//Добавление контакта
 submitContact.addEventListener("click", function(e) {
   e.preventDefault();
-  var inputName = document.getElementById("#inputName").value;
-  var inputPhone = document.getElementById("#inputPhone").value;
-  var selectGroup = document.getElementById("#selectGroup").value;
+  let inputName = document.getElementById("#inputName").value;
+  let inputPhone = document.getElementById("#inputPhone").value;
+  let selectGroup = document.getElementById("#selectGroup").value;
   if (selectGroup.length !== 0 && inputName.length !== 0 && inputPhone.length !== 0 ) {
-    var storage = window.localStorage.getItem("contacts");
-    var contacts = JSON.parse(storage);
-    var keys = Object.keys(contacts);
-    var id = "id" + Math.random().toString(16).slice(2)
+    let storage = window.localStorage.getItem("contacts");
+    let contacts = JSON.parse(storage);
+    let keys = Object.keys(contacts);
+    let id = "id" + Math.random().toString(16).slice(2)
     let newItem = {
       name: inputName,
       phone: inputPhone,
@@ -154,12 +127,13 @@ submitContact.addEventListener("click", function(e) {
   }
 })
 
+//Отрисовка списка
 function renderList() {
-  var contactsList = document.getElementById("#contactsList");
-  var storage = window.localStorage.getItem("contacts");
-  var contacts = JSON.parse(storage);
-  var keys = Object.keys(contacts);
-  for (var i = 0; i < keys.length; i++) {
+  let contactsList = document.getElementById("#contactsList");
+  let storage = window.localStorage.getItem("contacts");
+  let contacts = JSON.parse(storage);
+  let keys = Object.keys(contacts);
+  for (let i = 0; i < keys.length; i++) {
     let name = keys[i];
     let values = contacts[name];
     let listItem = document.createElement("li");
@@ -173,10 +147,10 @@ function renderList() {
     wrap.addEventListener("click", function() {
       let mainItems = document.getElementsByClassName("contacts-item");
       let nestedItems = document.getElementsByClassName("nested-list");
-      for (var i = 0; i < mainItems.length; i++) {
+      for (let i = 0; i < mainItems.length; i++) {
         mainItems[i].classList.remove("contacts-item_active");
       }
-      for (var i = 0; i < nestedItems.length; i++) {
+      for (let i = 0; i < nestedItems.length; i++) {
         nestedItems[i].classList.remove("nested-list_open");
       }
       listItem.classList.add("contacts-item_active");
@@ -193,7 +167,7 @@ function renderList() {
     wrap.appendChild(text);
     wrap.appendChild(icon);
     contactsList.appendChild(listItem);
-    for (var j = 0; j < values.length; j++) {
+    for (let j = 0; j < values.length; j++) {
       let nestedItem = document.createElement("li");
       nestedItem.classList.add("nested-list__item", "nested-item");
       let nestedTxt = document.createElement("p");
@@ -226,12 +200,11 @@ function renderList() {
         location.reload();
       })
 
-      iconDelete.classList.add("nested-icons__item","nested-icon", "nested-icon_red");
+      iconDelete.classList.add("nested-icons__item","nested-icon", "nested-icon_red", "nested-icon__delete");
       iconEdit.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_3901_1643)"><path opacity="0.3" d="M3 17.2501V21.0001H6.75L17.81 9.94006L14.06 6.19006L3 17.2501ZM20.71 7.04006C21.1 6.65006 21.1 6.02006 20.71 5.63006L18.37 3.29006C17.98 2.90006 17.35 2.90006 16.96 3.29006L15.13 5.12006L18.88 8.87006L20.71 7.04006Z" fill="black"/></g><defs><clipPath id="clip0_3901_1643"><rect width="24" height="24" fill="white"/></clipPath></defs></svg>';
-      iconDelete.innerHTML = '<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_3901_100)"><path opacity="0.3" d="M6.66664 20.3889C6.66664 21.55 7.61664 22.5 8.77775 22.5H17.2222C18.3833 22.5 19.3333 21.55 19.3333 20.3889V7.72222H6.66664V20.3889ZM9.26331 12.8733L10.7516 11.385L13 13.6228L15.2378 11.385L16.7261 12.8733L14.4883 15.1111L16.7261 17.3489L15.2378 18.8372L13 16.5994L10.7622 18.8372L9.27386 17.3489L11.5116 15.1111L9.26331 12.8733ZM16.6944 4.55556L15.6389 3.5H10.3611L9.30553 4.55556H5.61108V6.66667H20.3889V4.55556H16.6944Z" fill="black"/></g><defs><clipPath id="clip0_3901_100"><rect width="25.3333" height="25.3333" fill="white" transform="translate(0.333313 0.333344)"/></clipPath></defs></svg>';
+      iconDelete.innerHTML = '<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_3901_101)"><path opacity="0.3" d="M6.66664 20.3889C6.66664 21.55 7.61664 22.5 8.77775 22.5H17.2222C18.3833 22.5 19.3333 21.55 19.3333 20.3889V7.72222H6.66664V20.3889ZM9.26331 12.8733L10.7516 11.385L13 13.6228L15.2378 11.385L16.7261 12.8733L14.4883 15.1111L16.7261 17.3489L15.2378 18.8372L13 16.5994L10.7622 18.8372L9.27386 17.3489L11.5116 15.1111L9.26331 12.8733ZM16.6944 4.55556L15.6389 3.5H10.3611L9.30553 4.55556H5.61108V6.66667H20.3889V4.55556H16.6944Z" fill="black"/></g><defs><clipPath id="clip0_3901_101"><rect width="25.3333" height="25.3333" fill="white" transform="translate(0.333313 0.333344)"/></clipPath></defs></svg>';
       nestedName.innerText = values[j].name;
-      nestedPhone.innerText = values[j].phone;  
-
+      nestedPhone.innerText = values[j].phone;
       nestedIcons.appendChild(iconEdit);
       nestedIcons.appendChild(iconDelete);
       nestedTxt.appendChild(nestedName);
@@ -243,14 +216,15 @@ function renderList() {
   }
 }
 
+
+//Отрисовка групп
 function renderGroups() {
   let groupsList = document.getElementById("#groupsList");
   let modalItem = document.getElementById("#modalItem");
-
-  var storage = window.localStorage.getItem("contacts");
-  var contacts = JSON.parse(storage);
-  var keys = Object.keys(contacts);  
-  for (var i = 0; i < keys.length; i++) {
+  let storage = window.localStorage.getItem("contacts");
+  let contacts = JSON.parse(storage);
+  let keys = Object.keys(contacts);  
+  for (let i = 0; i < keys.length; i++) {
     let item = document.createElement("li");
     item.classList.add("modal-list__item", "modal-item");
     item.setAttribute("data-name", keys[i]);
@@ -265,29 +239,26 @@ function renderGroups() {
     });
     item.appendChild(text);
     item.appendChild(icon);
-
     groupsList.insertBefore(item, modalItem);
   }
 }
 
+//Удаление
 function deleteItem(name) {
-  var storage = window.localStorage.getItem("contacts");
-  var contacts = JSON.parse(storage);
+  let storage = window.localStorage.getItem("contacts");
+  let contacts = JSON.parse(storage);
   delete contacts[name];
   window.localStorage.setItem("contacts", JSON.stringify(contacts));
   location.reload();
 }
 
-function addContact() {
-
-}
-
+//Выбор группы
 function renderOptions() {
   let selectGroup = document.getElementById("#selectGroup");
-  var storage = window.localStorage.getItem("contacts");
-  var contacts = JSON.parse(storage);
+  let storage = window.localStorage.getItem("contacts");
+  let contacts = JSON.parse(storage);
   let keys = Object.keys(contacts);
-  for (var i = 0; i < keys.length; i++) {
+  for (let i = 0; i < keys.length; i++) {
     let option = document.createElement("option");
     option.text = keys[i];
     option.setAttribute("value", keys[i]);
@@ -295,10 +266,61 @@ function renderOptions() {
   }  
 }
 
+//проверка вводимых значений
 
 let inputPhone = document.getElementById("#inputPhone");
-
 inputPhone.addEventListener("input", function() {
-  this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');
+  this.value = this.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');
 })
 
+let inputName = document.getElementById("#inputName");
+inputName.addEventListener("input", function() {
+  this.value = this.value.replace(/[^A-Za-z ]/g, '').replace(/(\..*?)\..*/g, '$1');
+})
+
+//Внесение данных в localstorage при первой загрузке
+function onInitialLoad() {
+  let selectGroup = document.getElementById("#selectGroup");
+  let storage = window.localStorage.getItem("contacts");
+  let contacts = JSON.parse(storage);
+  if (contacts === null) {
+    let contactsList = {
+      /*
+      "Друзья": [
+        {
+          name: "Фамилия Имя Отчество 1",
+          phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
+          id: "id3f4efeaae6f99"
+        },
+        {
+          name: "Фамилия Имя Отчество 2",
+          phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
+           id: "id5f4efebbe6f99"        
+        }
+      ],
+      "Коллеги": [
+        {
+          name: "Фамилия Имя Отчество 3",
+          phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
+           id: "id2a3eddbbe6f98"
+        },
+        {
+          name: "Фамилия Имя Отчество 4",
+          phone: "+7 (ХХХ) ХХХ - ХХ - ХХ",
+          id: "id4a5effcce6798"        
+        }
+      ],
+      "Родственники": []
+     */     
+    }
+    window.localStorage.setItem("contacts", JSON.stringify(contactsList))
+  }  
+}
+
+function renderPlaceholder() {
+  let placeholder = document.createElement("div");
+  let container = document.getElementById("#mainContainer")
+  placeholder.classList.add("placeholder");
+  placeholder.innerText = "Список контактов пуст";
+  container.appendChild(placeholder);
+}

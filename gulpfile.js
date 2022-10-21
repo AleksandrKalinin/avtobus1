@@ -34,10 +34,9 @@ function compile(){
 		.pipe(autoprefixer({
 			cascade: false
 		}))
-
-/*		.pipe(cleanCSS({
+		.pipe(cleanCSS({
 			level: 2
-		})) */
+		}))
 	    .pipe(gulp.dest('./build/css'))
 	    .pipe(browserSync.stream())
 }
@@ -48,10 +47,9 @@ function styles(){
 		.pipe(autoprefixer({
 			cascade: false
 		}))
-
-/*		.pipe(cleanCSS({
+		.pipe(cleanCSS({
 			level: 2
-		})) */
+		})) 
 		.pipe(gulp.dest('./build/css'))
 		.pipe(browserSync.stream())
 }
@@ -59,7 +57,7 @@ function styles(){
 function scripts(){
 	return gulp.src(jsFiles)
 		.pipe(concat('script.js'))
-		/*
+		/*	
 		.pipe(uglify({
 			toplevel: true
 		})) */

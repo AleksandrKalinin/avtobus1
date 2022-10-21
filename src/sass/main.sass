@@ -1,13 +1,16 @@
+//Global styles
 $blue-color: #005BFE
 $red-color: #F81155
 
 *
 	box-sizing: border-box
 
-body
-	font-family: 'Arial', sans-serif
+html, body
 	margin: 0
 	padding: 0
+
+body
+	font-family: 'Arial', sans-serif
 	position: relative
 
 a.button.button_outlined
@@ -39,9 +42,9 @@ a.button
 	line-height: 18px
 	transition: .1s all
 	&:hover
-		filter: brightness(1.1)
+		filter: brightness(0.9)
 
-//Modal styling
+//Modal and overlay
 
 .overlay
 	position: absolute
@@ -50,8 +53,8 @@ a.button
 	width: 100%
 	height: 100%
 	background: rgba(0, 0, 0, 0.3)
-	z-index: 2
-	transition: .2s all
+	z-index: 3
+	transition: .1s all
 	visibility: hidden
 	display: flex
 	.overlay-outside
@@ -65,9 +68,13 @@ a.button
 	width: 312px
 	height: 100%
 	background: #ffffff
-	transition: .2s all
 	.modal-header__icon
 		cursor: pointer
+		transition: .1s all
+		z-index: 999
+		background: url("../images/Close.svg")
+		&:hover
+			transform: scale(1.2)
 	.modal-content
 		height: 100%
 	.modal-content__top
@@ -115,7 +122,19 @@ a.button
 					justify-content: center
 					align-items: center
 					border-radius: 6px
-					border: 1px solid #F2F2F2		
+					border: 1px solid #F2F2F2
+					transition: .1s all
+					&:hover
+						background: $red-color
+						color: #ffffff
+						svg
+							fill: #ffffff
+							g
+								path
+									fill: #ffffff
+									opacity: 1
+		.modal-buttons.modal-buttons_single
+			justify-content: flex-end
 		.modal-buttons
 			display: flex
 			align-self: flex-end
@@ -161,8 +180,12 @@ a.button
 	height: 70px
 	display: flex
 	align-items: center
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05)
+	position: relative
+	z-index: 2
+	background: #ffffff
 	.top-header__wrapper
-		width: 1140px
+		width: 1160px
 		margin: 0 auto
 		display: flex
 		align-items: center
@@ -180,13 +203,16 @@ a.button
 			justify-content: space-between
 			width: 276px
 
+//Main container and list
+
 .main
 	width: 100%
-	height: 890px
+	min-height: calc(100vh - 70px)
 	background: #F6F7F9
+	position: relative
 			
 .main-list.contacts
-	width: 1140px
+	width: 1160px
 	border-radius: 6px
 	list-style: none
 	margin: 0 auto
@@ -212,6 +238,8 @@ a.button
 		color: $blue-color
 		.contacts-header__icon
 			transform: rotate(180deg)
+
+//Nested list in contacts section
 
 .nested-list.nested-list_open
 	max-height: 300px
@@ -256,17 +284,38 @@ a.button
 			height: 38px
 			border: 1px solid #F2F2F2	
 			transition: .2s all
-		.nested-icons__item:hover	
-			svg
-				fill: #000000
-				g
-					path
-						fill: #000000	
 		.nested-icon_blue:hover
 			color: #fff
 			background: $blue-color
-			border: 1px solid $blue-color	
+			border: 1px solid $blue-color
+			svg
+				fill: #ffffff
+				g
+					path
+						fill: #ffffff
+						opacity: 1			
 		.nested-icon_red:hover
-			color: #fff
+			color: #ffffff
 			background: $red-color
-			border: 1px solid $red-color					
+			border: 1px solid $red-color
+			svg
+				fill: #ffffff
+				g
+					path
+						fill: #ffffff
+						opacity: 1 
+
+//Placeholder
+
+.placeholder
+	width: 100%
+	height: 100%
+	background: #F6F7F9
+	display: flex
+	justify-content: center
+	align-items: center
+	color: rgba(0, 0, 0, 0.3)
+	font-size: 18px
+	position: absolute
+	top: 0
+	left: 0
