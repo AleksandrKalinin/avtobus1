@@ -158,7 +158,8 @@ function renderList() {
         nestedItems[i].classList.remove("nested-list_open");
       }
       listItem.classList.add("contacts-item_active");
-      nestedList.classList.add("nested-list_open");  
+      nestedList.classList.add("nested-list_open");
+      nestedList.style.maxHeight = `${106 * nestedList.children.length}px`;  
     })    
     let text = document.createElement("span");
     text.classList.add("contacts-header__text");
