@@ -7,10 +7,7 @@ let toggleContacts = document.getElementById("#toggleContacts");
 let toggleButtons = document.getElementsByClassName("contacts-header__icon");
 let addGroup = document.getElementById("#addGroup");
 let submitGroup = document.getElementById("#submitGroup");
-let submitContact = document.getElementById("#submitContact");
 let inputGroup = document.getElementById("#inputGroup");
-let modalGroups = document.getElementById("#modalGroups");
-let modalContacts = document.getElementById("#modalContacts");
 let modalForm = document.getElementById("#modalForm"); 
 let currentItem = {};
 let updating = false;
@@ -102,20 +99,27 @@ submitContact.addEventListener("click", function(e) {
       id: id
     };
     if (updating === true) {
-      let arr = contacts[currentItem.name];
-      arr[currentItem.index] = newItem;
-      contacts[currentItem.name] = arr;
-      updating = false;
-    } else {
-      if (keys.includes(selectGroup)) {
+      if (selectGroup === currentItem.name) {
+        let arr = contacts[currentItem.name];
+        arr[currentItem.index] = newItem;
+        contacts[currentItem.name] = arr;     
+      } else {
         let arr = contacts[selectGroup];
         arr.push(newItem);
         contacts[selectGroup] = arr;
-      } else {
-        let arr = [];
-        arr.push(newItem);
-        contacts[selectGroup] = arr
-      }      
+        contacts[currentItem.name].splice(currentItem.index,1);
+      }
+      updating = false;   
+    } else {
+        if (keys.includes(selectGroup)) {
+          let arr = contacts[selectGroup];
+          arr.push(newItem);
+          contacts[selectGroup] = arr;
+        } else {
+          let arr = [];
+          arr.push(newItem);
+          contacts[selectGroup] = arr
+        }      
     }   
     window.localStorage.setItem("contacts", JSON.stringify(contacts));
     inputName = "";
@@ -186,6 +190,7 @@ function renderList() {
         updating = true;
         let id = e.currentTarget.getAttribute("data-value");
         let index = values.map(item => item.id).indexOf(id);
+
         currentItem.index = index;
         currentItem.name = name;
         modalContacts.classList.toggle("modal_open");    
