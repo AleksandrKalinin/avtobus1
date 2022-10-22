@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Avtobus1</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	<link rel="shortcut icon" href="build/images/favicon.ico" type="image/x-icon">	
+	<link rel="stylesheet" type="text/css" href="build/css/style.css">
+</head>
+<body>
+	<div class="overlay" id="#modalGroups">
+		<div class="modal">
+			<div class="modal__content modal-content">
+				<div class="modal-content__top modal-top">
+					<h6 class="modal-top__header">Группы контактов
+						<span class="modal-header__icon" id="#modalClose">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<g clip-path="url(#clip0_1894_185)">
+									<rect width="24" height="24" rx="6" fill="white"/>
+									<path opacity="0.3" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="black"/>
+								</g>
+								<defs>
+									<clipPath id="clip0_1894_185">
+										<rect width="24" height="24" rx="6" fill="white"/>
+									</clipPath>
+								</defs>
+							</svg>							
+						</span>
+					</h6>
+				</div>
+				<div class="modal-content__main modal-main">
+					<ul class="modal-main__list modal-list" id="#groupsList">
+						<li class="modal-list__item modal-item" id="#modalItem">
+							<form class="modal-item__form modal-form" id="#modalForm">
+								<input class="modal-form__input" type="" name="" placeholder="Введите название" id="#inputGroup">
+								<div class="modal-item__button">
+									<svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<g clip-path="url(#clip0_3901_100)">
+											<path opacity="0.3" d="M6.66664 20.3889C6.66664 21.55 7.61664 22.5 8.77775 22.5H17.2222C18.3833 22.5 19.3333 21.55 19.3333 20.3889V7.72222H6.66664V20.3889ZM9.26331 12.8733L10.7516 11.385L13 13.6228L15.2378 11.385L16.7261 12.8733L14.4883 15.1111L16.7261 17.3489L15.2378 18.8372L13 16.5994L10.7622 18.8372L9.27386 17.3489L11.5116 15.1111L9.26331 12.8733ZM16.6944 4.55556L15.6389 3.5H10.3611L9.30553 4.55556H5.61108V6.66667H20.3889V4.55556H16.6944Z" fill="black"/>
+										</g>
+										<defs>
+											<clipPath id="clip0_3901_100">
+												<rect width="25.3333" height="25.3333" fill="white" transform="translate(0.333313 0.333344)"/>
+											</clipPath>
+										</defs>
+									</svg>								
+								</div>								
+							</form>
+						</li>						
+					</ul>
+					<div class="modal-main__button modal-buttons">
+						<a href="" class="button button_outlined" id="#addGroup">Добавить</a>
+						<a href="" class="button button_blue" id="#submitGroup">Сохранить</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="overlay-outside"></div>		
+	</div>
+	<div class="overlay" id="#modalContacts">
+		<div class="modal">
+			<div class="modal__content modal-content">
+				<div class="modal-content__top modal-top">
+					<h6 class="modal-top__header">Добавление контакта
+						<span class="modal-header__icon" id="#modalClose">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<g clip-path="url(#clip0_1894_185)">
+									<rect width="24" height="24" rx="6" fill="white"/>
+									<path opacity="0.3" d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z" fill="black"/>
+								</g>
+								<defs>
+									<clipPath id="clip0_1894_185">
+										<rect width="24" height="24" rx="6" fill="white"/>
+									</clipPath>
+								</defs>
+							</svg>						
+						</span>
+					</h6>
+				</div>
+				<div class="modal-content__main modal-main">
+					<ul class="modal-main__list modal-list">
+						<li class="modal-list__item modal-item">
+							<form class="modal-item__form modal-form modal-form_visible modal-form__contacts" id="#modalForm2">
+								<div class="modal-form__item">
+									<input class="modal-form__input" type="" name="" placeholder="Введите ФИО" id="#inputName">									
+								</div>
+								<div class="modal-form__item">
+									<input class="modal-form__input" type="" name="" placeholder="Введите номер" id="#inputPhone">									
+								</div>
+								<div class="modal-form__item">
+									<select class="modal-form__input" type="" name="" placeholder="Введите группу" id="#selectGroup">
+										<option value="" disabled selected>Выберите группу</option>
+									</select>										
+								</div>								
+							</form>
+						</li>						
+					</ul>
+					<div class="modal-main__button modal-buttons modal-buttons_single">
+						<a href="" class="button button_blue" id="#submitContact">Сохранить</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="overlay-outside"></div>			
+	</div>	
+	<header class="top-header">
+		<div class="top-header__wrapper top-wrapper">
+			<div class="top-wrapper__logo top-logo">
+				<svg width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M1.61967 0.0527838C1.2459 0.133671 0.940376 0.306712 0.634031 0.610909C0.321235 0.921514 0.153771 1.21819 0.0701915 1.60981C-0.0243015 2.05269 -0.022959 19.3872 0.0716206 19.8305C0.23891 20.6147 0.806821 21.3433 1.52522 21.6954C2.202 22.0271 1.62751 22.0069 10.0492 21.9945C17.5814 21.9834 17.5823 21.9834 17.7018 21.8947C17.7676 21.8459 17.8616 21.7526 17.9107 21.6873L18 21.5685V12.3724V3.17625L17.9107 3.05748C17.8616 2.99216 17.7677 2.89884 17.7019 2.85008C17.5893 2.76648 17.5157 2.76067 16.4183 2.74868L15.254 2.73599L15.2413 1.57992C15.2292 0.490159 15.2233 0.417098 15.1391 0.30525C15.09 0.239972 14.9961 0.146701 14.9303 0.0979361C14.8108 0.0093946 14.8018 0.00926559 8.3505 0.00174021C3.03793 -0.00449511 1.84222 0.00457835 1.61967 0.0527838ZM13.8643 2.05187V2.7399H7.90839C1.39855 2.7399 1.78207 2.75521 1.55436 2.48649C1.26807 2.14858 1.39574 1.59983 1.80151 1.42434C1.90917 1.37777 3.03711 1.36689 7.89895 1.36551L13.8643 1.36383V2.05187ZM9.59593 5.55672C10.6273 5.77367 11.502 6.64231 11.7205 7.66641C12.1348 9.60826 10.3878 11.343 8.43222 10.9316C7.64267 10.7656 6.90881 10.2016 6.55435 9.4885C6.14096 8.65683 6.14096 7.83153 6.55435 6.99987C7.09979 5.90259 8.3715 5.29918 9.59593 5.55672ZM11.2417 12.4729C12.5361 12.8487 13.4114 13.7251 13.7664 15.0007C13.8299 15.2292 13.8427 15.4561 13.8427 16.3576C13.8427 17.3839 13.838 17.4464 13.7534 17.559C13.7042 17.6244 13.6103 17.7177 13.5445 17.7665C13.4255 17.8547 13.4014 17.8552 9.01407 17.8552C4.62673 17.8552 4.60261 17.8547 4.48365 17.7665C4.19246 17.5506 4.18687 17.5284 4.17133 16.5298C4.15595 15.5425 4.19359 15.1766 4.36066 14.6888C4.68173 13.7514 5.53329 12.8911 6.44145 12.5865C7.04479 12.3842 7.15383 12.3761 9.12234 12.3875C10.7413 12.3968 11.0181 12.408 11.2417 12.4729Z" fill="#005BFE"/>
+				</svg>
+				<p class="top-logo__text">Книга контактов</p>
+			</div>
+			<div class="top-wrapper__buttons">
+				<a href="" class="button button_red" id="#addContact">
+					Добавить контакт
+					<span>
+						<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<g clip-path="url(#clip0_3901_773)">
+								<path d="M14.25 9.75H9.75V14.25H8.25V9.75H3.75V8.25H8.25V3.75H9.75V8.25H14.25V9.75Z" fill="white"/>
+							</g>
+							<defs>
+								<clipPath id="clip0_3901_773">
+									<rect width="18" height="18" fill="white"/>
+								</clipPath>
+							</defs>
+						</svg>
+					</span>
+				</a>
+				<a href="" class="button button_blue" id="#groups">Группы</a>
+			</div>
+		</div>
+	</header>
+	<section class="main" id="#mainContainer">
+		<ul class="main-list contacts" id="#contactsList">
+
+		</ul>
+	</section>
+	<script src="build/js/script.js"></script>
+</body>
+</html>

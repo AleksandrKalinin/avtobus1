@@ -1,0 +1,318 @@
+//Global styles
+$blue-color: #005BFE
+$red-color: #F81155
+
+*
+	box-sizing: border-box
+
+html, body
+	margin: 0
+	padding: 0
+
+body
+	font-family: 'Arial', sans-serif
+	position: relative
+
+a.button.button_outlined
+	border: 1px solid transparent
+	color: $blue-color
+	background: transparent
+	&:hover
+		border: 1px solid $blue-color
+
+a.button.button_blue
+	background: $blue-color
+	color: #FFFFFF
+
+a.button.button_red
+	background: $red-color
+	color: #FFFFFF
+	span
+		padding-left: 8px	
+
+a.button
+	border-radius: 6px
+	padding: 10px 14px
+	display: flex
+	align-items: center
+	justify-content: center
+	text-decoration: none
+	font-size: 14px
+	font-weight: 700
+	line-height: 18px
+	transition: .1s all
+	&:hover
+		filter: brightness(0.9)
+
+//Modal and overlay
+
+.overlay
+	position: absolute
+	left: 0
+	top: 0	
+	width: 100%
+	height: 100%
+	background: rgba(0, 0, 0, 0.3)
+	z-index: 3
+	transition: .1s all
+	visibility: hidden
+	display: flex
+	.overlay-outside
+		height: 100%
+		width: calc(100% - 312px)
+
+.modal_open
+	visibility: visible
+
+.modal
+	width: 312px
+	height: 100%
+	background: #ffffff
+	.modal-header__icon
+		cursor: pointer
+		transition: .1s all
+		z-index: 999
+		background: url("../images/Close.svg")
+		&:hover
+			transform: scale(1.2)
+	.modal-content
+		height: 100%
+	.modal-content__top
+		width: 100%
+		padding: 24px
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+		.modal-top__header
+			font-size: 18px
+			font-weight: 700px
+			line-height: 24px
+			color: #000000
+			margin: 0
+			display: flex
+			justify-content: space-between
+	.modal-content__main
+		padding: 24px
+		height: calc(100% - 79px)
+		display: flex
+		flex-direction: column
+		justify-content: space-between
+		.modal-list
+			margin: 0
+			padding: 0
+			list-style: none
+			.modal-list__item
+				width: 100%
+				height: 38px
+				display: flex
+				justify-content: space-between
+				margin-bottom: 16px
+				.modal-item__text
+					display: flex
+					padding: 11px 12px
+					background: #F2F2F2	
+					border-radius: 6px
+					margin: 0
+					font-size: 14px
+					line-height: 16px
+					width: 214px
+				.modal-item__button
+					cursor: pointer
+					width: 38px
+					height: 38px
+					display: flex
+					justify-content: center
+					align-items: center
+					border-radius: 6px
+					border: 1px solid #F2F2F2
+					transition: .1s all
+					&:hover
+						background: $red-color
+						color: #ffffff
+						svg
+							fill: #ffffff
+							g
+								path
+									fill: #ffffff
+									opacity: 1
+		.modal-buttons.modal-buttons_single
+			justify-content: flex-end
+		.modal-buttons
+			display: flex
+			align-self: flex-end
+			justify-content: space-between
+			width: 212px
+			#submitContact
+				display: flex
+				align-self: flex-end
+		.modal-form.modal-form_visible
+			height: auto
+			overflow: initial	
+		.modal-form	
+			width: 100%
+			height: 0
+			overflow: hidden
+			display: flex
+			justify-content: space-between
+			.modal-form__item								
+				margin-bottom: 16px
+				.modal-form__input
+					width: 100%
+		.modal-form__contacts
+			flex-direction: column			
+		.modal-form__input
+			border: none
+			outline: none
+			transition: .1s
+			display: flex
+			padding: 11px 12px
+			background: #F2F2F2	
+			border-radius: 6px
+			margin: 0
+			font-size: 14px
+			line-height: 16px
+			width: 214px				
+		.modal-form__input:focus
+			outline: 1px solid $blue-color
+
+//Header styling
+
+.top-header
+	width: 100%
+	height: 70px
+	display: flex
+	align-items: center
+	box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05)
+	position: relative
+	z-index: 2
+	background: #ffffff
+	.top-header__wrapper
+		width: 1160px
+		margin: 0 auto
+		display: flex
+		align-items: center
+		justify-content: space-between
+		.top-logo
+			display: flex
+			align-items: center
+		.top-logo__text
+			color: $blue-color
+			font-size: 18px
+			font-weight: 700
+			margin-left: 16px
+		.top-wrapper__buttons
+			display: flex	
+			justify-content: space-between
+			width: 276px
+
+//Main container and list
+
+.main
+	width: 100%
+	min-height: calc(100vh - 70px)
+	background: #F6F7F9
+	position: relative
+			
+.main-list.contacts
+	width: 1160px
+	border-radius: 6px
+	list-style: none
+	margin: 0 auto
+	padding: 54px 0
+	.contacts-item
+		margin-bottom: 24px
+	.contacts-header__wrapper
+		padding: 24px
+		font-size: 18px
+		line-height: 22px
+		font-weight: 700
+		display: flex
+		justify-content: space-between
+		background: #FFFFFF	
+	.contacts-header__icon
+		height: 22px
+		transition: .2s all		
+	.contacts-header
+		box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.05)
+		transition: .2s all
+		cursor: pointer
+	.contacts-header.contacts-item_active
+		color: $blue-color
+		.contacts-header__icon
+			transform: rotate(180deg)
+
+//Nested list in contacts section
+
+.nested-list
+	margin: 0
+	padding: 0
+	max-height: 0
+	transition: .2s all
+	overflow: hidden
+	list-style: none
+	.nested-list__item
+		display: flex
+		align-items: center
+		font-weight: 400
+		font-size: 18px
+		line-height: 120%
+		padding: 24px
+		border-top: 1px solid #F2F2F2
+		background: #FFFFFF	
+		.nested-item__text
+			display: flex
+			align-items: center
+			justify-content: space-between
+			width: calc(100% - 84px)	
+			padding-right: 24px
+		.nested-item__name
+			color: #000000
+			opacity: .5
+		.nested-item__phone
+			color: #000000	
+		.nested-item__icons
+			width: 84px
+			display: flex
+			justify-content: space-between
+		.nested-icons__item
+			display: flex
+			justify-content: center
+			align-items: center
+			cursor: pointer
+			width: 38px
+			height: 38px
+			border: 1px solid #F2F2F2	
+			transition: .2s all
+		.nested-icon_blue:hover
+			color: #fff
+			background: $blue-color
+			border: 1px solid $blue-color
+			svg
+				fill: #ffffff
+				g
+					path
+						fill: #ffffff
+						opacity: 1			
+		.nested-icon_red:hover
+			color: #ffffff
+			background: $red-color
+			border: 1px solid $red-color
+			svg
+				fill: #ffffff
+				g
+					path
+						fill: #ffffff
+						opacity: 1 
+
+//Placeholder
+
+.placeholder
+	width: 100%
+	height: 100%
+	background: #F6F7F9
+	display: flex
+	justify-content: center
+	align-items: center
+	color: rgba(0, 0, 0, 0.3)
+	font-size: 18px
+	position: absolute
+	top: 0
+	left: 0
